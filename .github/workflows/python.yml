@@ -1,0 +1,65 @@
+name: "Repo CI] Python Code"
+
+on:
+  pull_request:
+
+jobs:
+  unittest:
+    runs-on: [self-hosted, mrx-runner]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8.10
+      - name: Initial setup
+        shell: bash -l {0}
+        run: make init
+      - name: Unit test
+        shell: bash -l {0}
+        run: make utest
+      - name: Coverage report
+        run: |
+          echo \`\`\` >> report.txt
+          coverage report >> report.txt
+          echo \`\`\` >> report.txt
+      - uses: actions/upload-artifact@v1
+        with:
+          name: results
+          path: .
+      - uses: actions/download-artifact@v1
+        with:
+          name: results
+      - name: comment PR
+        uses: machine-learning-apps/pr-comment@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          path: results/report.txt
+
+  pre-commit:
+    runs-on: [self-hosted, mrx-runner]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8.10
+      - name: Initial setup
+        shell: bash -l {0}
+        run: make init
+      - uses: pre-commit/action@v2.0.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  check-build-package:
+    runs-on: [self-hosted, mrx-runner]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8.10
+      - name: Build python package
+        run: |
+          pip install wheel
+          python setup.py sdist bdist_wheel --universal

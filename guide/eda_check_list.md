@@ -1,0 +1,95 @@
+# EDA check list
+
+- 아래의 check list 항목 각각을 issue로 만들기
+- issue를 해결하고 comment에 결과 정리
+
+## check list
+- [ ] 구체적인 문제 정의가 가장 중요
+    - 많은 프로젝트의 경우 클라이언트의 요청을 잘 정의된 문제로 환원하는 것이 가장 중요함
+        - manual labeling 필요
+            - classification
+        - manual labeling 이 그다지 필요 없음
+            - regression
+            - anomaly detection
+            - optimization
+    - 문제를 해결하기 위해 필수적인 데이터들 확인
+        - 생성된 모델의 성능을 평가하기 힘들면 필수적인 데이터가 부족한 경우일 때가 많음
+- [ ] Forward looking bias 주의
+    - [ ] missing value 처리뿐 아니라 dataset split, labeling 등등 다양한 과정에서 발생할 수 있음
+- [ ] Feature 이름 기반으로 의미없는 Feature 제거
+    - 공정 종류 및 퀄리티와 상관 없이 일정 패턴을 갖는 변수 삭제
+            - 예1. Run ID (그냥 계속 증가함)
+            - 예2. Wafer_Count (그냥 계속 증가함)
+    - 이름에 해당하는 변수 삭제 고려
+            - 예1. Wafer_Info
+            - 예2. Recipe_NAME
+- [ ] 물리적인 단위를 나타내는 Feature 확인
+    - 예를 들면, 장비이름, 레시피이름 등이 있음 (아래에서는 그냥 장비로 부름)
+        - 애초에 데이터를 전달 받을 때 별도의 파일로 나눠진 경우도 있음
+    - 한꺼번에 분석할지 따로 분석할지 조사
+        - Feature 종류가 유사한지
+            - 장비 별 feature 개수의 차이 및 그 비율을 (#\_장비) x (#\_장비) 테이블로 만들어보기
+            - 정량적 확인을 위해 overlap, jaccard coefficient와 같이 집합의 유사성을 나타내는 index 고려
+            - null column, const column 등을 제외한 "유효한" Feature에 대해서도 종류의 유사성 확인
+        - (time-series라면) sample의 수집 기간이 유사한지
+- [ ] Null value check
+    - 값이 없거나 NaN 또는 특정 숫자 (0?)로 채워져 있는 경우
+        - missing value로 처리
+            - linear interpolation 은 forward bias 가 생기니 간단하게 접근하려면 fill forward (ffill) 등을 추천
+            - 별도의 모델링을 통해 imputation 이나 sampling을 통해 처리할 수도 있음 (복잡함)
+        - value 0을 갖는 걸로 처리
+    - 각 column별 mean, mid value 등으로 메꾸고 baseline model 성능향상 확인해보기
+    - np.nan 대신 다른 값으로 채워져있는것은 아닌지(e.g. -999) 확인해보기
+    - Feature 별 null value 비율 (null fraction) 확인 (예제)
+    - Null fraction을 정렬하여 그려보기 (예제)
+    - Sample 별 null value 비율 (null fraction) 확인 (예제)
+    - 높은 null fraction 갖는 sample을 제거 했을 때의 feature null fraction 확인 (예제)
+    - 높은 null fraction 갖는 feature를 제거 했을 때의 sample null fraction 확인 (예제)
+    - 시간에 따른 null 패턴 확인 (예제)
+- [ ] Constant value check
+    - 전체 Feature의 값이 Constant 인지 확인(모든 row에 대해 다 같은 )
+    - Constant feature 제거 가능성 확인 (담당자 문의)
+    - Non-stationarity tests (unit root test 등..)
+- [ ] Feature별 Properties 확인
+    - integer인데 np.nan 값 때문에 float으로 되어있다면, nan 값 처리후, int 로 dtype 변환
+    - Feature들이 숫자인지 (integer or double), 문자인지 (char or string) 확인
+    - Feature별로 Unqiue 개수를 확인하여 Discrete value인지 확인
+        - 범주형 변수라면 각 클래스 별 분포 확인
+    - 숫자가 아닌 Feature들 사용 가능성 확인
+        - One-hot, integer, Label, Hash, Mean 인코딩 등
+    - Feature별로 Stationary 인지 Non-statationary 인지 확인
+        - Feature 분포를 그려보고, KDE 등을 사용하여 정규분포인지를 확인함
+        - Non-stationary 인 경우 difference 등을 feature로 사용할 수 있는지 확인
+        - diff 가 constant인 경우 의미없는 feature 인 경우가 많으므로 이것도 확인
+    - 특정 Feature에 따른 stratification이 필요한지 확인
+        - 특정 Feature의 class에 따라 다른 feature들이 다른 distribution 또는 특성을 갖고 있는지 확인
+- [ ] Visualization of all features
+    - 모든 feature 를 시간순으로 시각화하여 feature들의 특징을 확인
+        - Label이 있는 경우 함께 표시하고 시각적으로 구분이 가능한지 (정상 & 비정상) 확인
+        - Descrete 또는 숫자가 아닌 Feature 중 같이 그렸을 때 효과적인 경우가 있는지 확인
+        - x-axis 범위를 명시적으로 통일 (예: `ax.set_xlim(left, right)`)
+        - y축 스케일 확인
+    - Outlier 확인
+        - 정상, 비정상과 관련없는 (확인 가능?) Outlier 존재여부 확인
+        - 제거 가능여부 확인 (담당자 문의)
+        - 제거 방법 : clipping, winsorizor, log화, box-cox
+    - 시간에 따른 Trend 확인
+        - 시간에 따라 증가, 감소, 반복, 단절 등의 패턴이 있는지 확인
+        - Non-stationarity 를 다시 확인
+- [ ] 시계열 데이터의 경우 데이터 수집주기 확인
+    - *중요* 수집 주기가 너무 길어서 분석 목표에 적합치 않으면 sequential/time series 모델링을 하면 안됨!
+    - 데이터 수집 간격이 일정한지 확인
+    - 일정하지 않다면 Interval을 그려보고 평균값, 중간값, 표준편차등을 확인
+        - aggregation시, 숫자형 이외의 데이터 타입은 평균, 중간값이 없으므로 주의
+    - 필요시 등간격으로 resampling
+- [ ] Feature별 Correlation 확인
+    - Feature별로 Correlation이 있는지 Correlation map을 통해 확인할 것
+    - Correlation 정도가 클 경우
+        - 제거 가능성 확인 (담당자 문의)
+        - Feature의 difference 가 추가적인 feature로 기능할 수 있는지 확인
+- [ ] 생성 가능한 파생 변수가 있는지 확인
+    - 현재 갖고 있는 데이터나 Feature들간의 관계를 통해 파생될 수 있는 변수가 있는지 확인
+    - 도메인 지식을 최대한 활용
+- [ ] 분류 문제의 경우 Output class 별 분포 확인
+    - 특히, train/valid/test 나누었을 때
+- [ ] 이미지의 경우 divide-and-conquer 로 문제를 접근할 수 있는지 확인

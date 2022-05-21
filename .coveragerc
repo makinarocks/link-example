@@ -1,0 +1,9 @@
+[run]
+omit =
+    *__init__*
+    tests/*
+
+[report]
+omit =
+    *__init__*
+    tests/*
