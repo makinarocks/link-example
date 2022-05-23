@@ -28,6 +28,10 @@ else
 endif
 
 
+utest:
+	pytest tests -s --verbose --cov=src/ --cov-report=html --cov-report=term-missing --ignore=tests/components
+
+
 init:
 	pip install -U pip
 	pip install -r requirements.txt
