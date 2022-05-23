@@ -27,12 +27,6 @@ else
 	@echo "No Staged Python File in the src folder"
 endif
 
-utest:
-	pytest tests -s --verbose --cov=src/ --cov-report=html --cov-report=term-missing --ignore=tests/components
-	nbqa pytest tests -s --verbose --cov=src/ --cov-report=html --cov-report=term-missing --ignore=tests/components
-
-compile:
-	bash -x ./scripts/compile-components.sh
 
 init:
 	pip install -U pip
