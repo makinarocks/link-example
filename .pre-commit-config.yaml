@@ -30,11 +30,3 @@ repos:
     rev: v2.0.1
     hooks:
       - id: add-trailing-comma
-
-  - repo: local
-    hooks:
-      - id: license-checker
-        name: Check if license clauses are included in the source code
-        entry: hooks/license-checker.py
-        language: script
-        args: [--license-file-path=./hooks/license.txt]
