@@ -46,9 +46,9 @@ Jupyter notebooks in this folder illustrate how to construct Link<sup>TM</sup> p
 <br>
 
 ### [Text Data Classification using RNN](seq_classification.ipynb)
-![Text Data Classification using RNN](seq_classification.ipynb)
+![Text Data Classification using RNN](seq_classification.png)
 
 <br>
 
-### [Deep Q-Network Reinforcement Learning for CartPole](DQLearning-cartpole-example.ipynb)
-![Deep Q-Network Reinforcement Learning for CartPole](DQLearning-catpole-example.png)
+### [Deep Q-Network Reinforcement Learning for CartPole Environment](DQLearning-cartpole-example.ipynb)
+![Deep Q-Network Reinforcement Learning for CartPole Environment](DQLearning-catpole-example.png)
