@@ -17,9 +17,16 @@ Jupyter notebooks in this folder illustrate how to construct Link<sup>TM</sup> p
 ## How to view a Link example notebook
 
 1. Download a notebook file you want to view.
+   - Click the notebook's link.
+   - In the github-rendered page, click the mouse right button on the `raw` button and select "Save As..." menu.
+   - Save the file as name of Jupyter notebook file type. (On the pop-up dialog, you need to change the extension from `.txt` to `.ipynb` manually.)
 2. If you dont't have Link<sup>TM</sup> installed on your local machine, first install the program. Visit Link<sup>TM</sup> homepage for more information. (https://link.makinarocks.ai/)
 3. Run Link<sup>TM</sup> by executing `jupyter lab` on your terminal.
 4. Open the downloaded notebook file.
+
+The procedure above is roughly illustrated in the motion image below.
+
+![Download and Open Procedure](screenshots/download-demo.gif)
 
 ---
 
