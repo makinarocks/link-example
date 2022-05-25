@@ -13,10 +13,6 @@ Jupyter notebooks in this folder illustrate how to construct Link<sup>TM</sup> p
 ### [Iris Data EDA and Modelling](sklearn_iris.ipynb)
 ![Iris Data EDA and Modelling](sklearn_iris.png)
 
-<br>
-
-### [Iris Data EDA and Modelling](sklearn_iris.ipynb)
-![Iris Data EDA and Modelling](sklearn_iris.png)
 
 <br>
 
