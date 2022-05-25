@@ -11,7 +11,7 @@ Jupyter notebooks in this folder illustrate how to construct Link<sup>TM</sup> p
 6. MNIST Image Classification using CNN ([notebook](cnn_mnist_classification.ipynb) [screenshot](#mnist-image-classification-using-cnn))
 7. Using XGBoost for scikit-learn Datasets ([notebook](using-xgboost-with-scikit-learn.ipynb) [screenshot](#using-xgboost-for-scikit-learn-datasets))
 8. Text Data Classification using RNN ([notebook](seq_classification.ipynb) [screenshot](#text-data-classification-using-rnn))
-9. Deep Q-Network Reinforcement Learning for CartPole Environment ([notebook](DQLearning-cartpole-example.ipynb) [screenshot](#deep-q-network-reinforcement-learning-for-cartpole-environment)
+9. Deep Q-Network Reinforcement Learning for CartPole Environment ([notebook](DQLearning-cartpole-example.ipynb) [screenshot](#deep-q-network-reinforcement-learning-for-cartpole-environment))
 
 
 ## How to view a Link example notebook
