@@ -20,12 +20,12 @@ Jupyter notebooks in this folder illustrate how to construct Link<sup>TM</sup> p
 Or download a notebook file you want to view as follows:
    - Click the notebook's link.
    - In the github-rendered page, click the mouse right button on the `raw` button and select "Save As..." menu.
-   - Save the file as name of Jupyter notebook file type. (On the pop-up dialog, you need to change the extension from `.txt` to `.ipynb` manually.)
+   - Save the file as Jupyter notebook.
 2. If you dont't have Link<sup>TM</sup> installed on your local machine, first install the program. Visit Link<sup>TM</sup> homepage for more information. (https://link.makinarocks.ai/)
 3. Run Link<sup>TM</sup> by executing `jupyter lab` on your terminal.
 4. Open the downloaded notebook file.
 
-The procedure above is roughly illustrated in the motion image below.
+The procedure above is roughly illustrated in the motion GIF below.
 
 ![Download and Open Procedure](screenshots/download-demo.gif)
 
@@ -39,45 +39,71 @@ For more information on user guide of Link<sup>TM</sup>, please visit the introd
 
 ### [Spiral Pattern Classification](spiral_classification.ipynb)
 
+Classification of 2D spiral-distributed data using Pytorch framework
+
 ![Spiral Pattern Classification](screenshots/spiral_classification.png)
 
 <br>
 
 ### [Iris Data EDA and Modelling](sklearn_iris.ipynb)
+
+Basic exploratory data analysis (EDA) and modelling of _iris_ data using Scikit-Learn library
+
 ![Iris Data EDA and Modelling](screenshots/sklearn_iris.png)
 
 
 <br>
 
 ### [Titanic Data EDA and Modelling](sklearn_titanic.ipynb)
+
+Various EDA and ensemble modelling of _titanic_ data using Scikit-Learn library
+
 ![Titanic Data EDA and Modelling](screenshots/sklearn_titanic.png)
 
 <br>
 
 ### [Image Generation using Variational Autoencoder](vae_mnist_generation.ipynb)
+
+MNIST image generation test with variational autoencoder (VAE) using Pytorch framework
+
 ![Image Generation using Variational Autoencoder](screenshots/vae_mnist_generation.png)
 
 <br>
 
 ### [Image Restoration using Denoising Autoencoder](denoising_autoencoder_pytorch.ipynb)
+
+Restoring corrupted MNIST images with denoising autoencoder using Pytorch framework
+
 ![Denoising Autoencoder](screenshots/denoising_autoencoder_pytorch.png)
 
 <br>
 
 ### [MNIST Image Classification using CNN](cnn_mnist_classification.ipynb)
+
+Classification of MNIST images with convolutional neural network (CNN) and fully-connected network (FCN) being compared using Pytorch framework 
+
 ![MNIST Image Classification using CNN](screenshots/cnn_mnist_classification.png)
 
 <br>
 
 ### [Using XGBoost for scikit-learn datasets](using-xgboost-with-scikit-learn.ipynb)
+
+Modelling of _diabetes_ data for regression, classificaion, cross-validation, and hyperparameter searching using Scikit-Learn and XGBoost library
+
 ![Using XGBoost for scikit-learn datasets](screenshots/using-xgboost-with-scikit-learn.png)
 
 <br>
 
 ### [Text Data Classification using RNN](seq_classification.ipynb)
+
+Text classification with RNN using Pytorch library
+
 ![Text Data Classification using RNN](screenshots/seq_classification.png)
 
 <br>
 
-### [Deep Q-Network Reinforcement Learning for CartPole Environment](DQLearning-cartpole-example.ipynb)
+# ## [Deep Q-Network Reinforcement Learning for CartPole Environment](DQLearning-cartpole-example.ipynb)
+
+Deep Q-Network Reignforcement Learning (RL) for _CartPole_ environment using Pytorch and OpenAI-Gym frameworks
+
 ![Deep Q-Network Reinforcement Learning for CartPole Environment](screenshots/DQLearning-catpole-example.png)
