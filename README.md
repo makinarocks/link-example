@@ -102,7 +102,7 @@ Text classification with RNN using Pytorch library
 
 <br>
 
-# ## [Deep Q-Network Reinforcement Learning for CartPole Environment](DQLearning-cartpole-example.ipynb)
+### [Deep Q-Network Reinforcement Learning for CartPole Environment](DQLearning-cartpole-example.ipynb)
 
 Deep Q-Network Reignforcement Learning (RL) for _CartPole_ environment using Pytorch and OpenAI-Gym frameworks
 
